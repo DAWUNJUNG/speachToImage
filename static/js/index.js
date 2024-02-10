@@ -5,7 +5,7 @@ var diagnosticPara = document.querySelector('.output');
 const recognition = new SpeechRecognition();
 const speechRecognitionList = new SpeechGrammarList();
 
-let promptList = [];
+let promptList = 0;
 let stopSpeak = false;
 
 function sendSpeech() {
@@ -25,13 +25,13 @@ function sendSpeech() {
             stopSpeak = true;
         } else {
             $('#sttContent').text($('#sttContent').text() + speechResult + '\n');
-            promptList.push(speechResult);
+            promptList++;
         }
     }
 
     recognition.onend = function (event) {
         // 한문장이 끝난 뒤 종료 되기에 다음 문장을 받기 위해 이어서 시작해준다.
-        if (!stopSpeak && promptList.length < 10) {
+        if (!stopSpeak && promptList < 10) {
             recognition.start();
         }
     }
@@ -58,8 +58,8 @@ $('#createImage').on('click', function () {
     $('#loadingContainer').show();
 
     let promptString = '';
-    promptList.forEach((string) => {
-        promptString += (string + '\n');
+    $('#sttContent').text().split('\n').forEach((string) => {
+        promptString += (string + ' ');
     });
 
     const data = {
