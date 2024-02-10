@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.118.2">
+    <title>STI (Speach To Image)</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/index.css') }}" rel="stylesheet">
+</head>
+<body>
+<div class="container px-2 py-5">
+    <h2 class="pb-2 border-bottom">STI (Speach To Image)</h2>
+
+    <div class="row row-cols-1 row-cols-md-2 g-5 py-5">
+        <div class="col d-flex flex-column align-items-start gap-2">
+            <h2 class="fw-bold text-body-emphasis">내가 말하는 아이디어가 이미지!</h2>
+            <p class="text-body-secondary">
+                이곳에서 사용자님의 아이디어를 말해보고 유사한 이미지를 확인해보세요~!<br/>
+                말씀하신 내용과 다르다면 다른 부분만 수정하여 이미지를 생성 할 수 있습니다!<br/>
+                그만 말하고 싶다면 "여기까지"라고 말해주세요.<br/>
+                처음부터 다시 하고 싶다면 "처음으로"를 눌러주세요!<br/>
+                (음성인식은 최대 10문장까지만 인식합니다.)
+            </p>
+            <div style="display: inline-block;">
+                <button id="speachIdea" class="btn btn-primary btn-lg">아이디어 말해보기</button>
+                <button id="createImage" class="btn btn-primary btn-lg" style="display: none;">이미지 생성해보기</button>
+                <button id="resetPage" class="btn btn-primary btn-lg" style="display: none;">처음으로</button>
+            </div>
+        </div>
+
+        <div id="sttContainer" class="col" style="display: inline-block;">
+            <div class="row row-cols-1 row-cols-sm-1 g-4">
+                <div class="col d-flex flex-column gap-2">
+                    <div class="feature-icon-small d-inline-flex align-items-center justify-content-center bg-gradient fs-4 rounded-3">
+                        <img class="bi" src="{{ url_for('static', filename='img/memo.png') }}"
+                             style="width:50px;height:50px;">
+                    </div>
+                    <h4 class="fw-semibold mb-0 text-body-emphasis">아이디어 메모장</h4>
+                   <textarea id="sttContent" class="form-control" style="width:500px; height:350px; resize: none;"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div id="loadingContainer" class="col" style="display: none;">
+            <div class="row row-cols-1 row-cols-sm-2 g-4">
+                <div class="col d-flex flex-column gap-2">
+                    <div class="feature-icon-small d-inline-flex align-items-center justify-content-center bg-gradient fs-4 rounded-3">
+                        <img class="bi" src="{{ url_for('static', filename='img/dall-e-icon.png') }}"
+                             style="width:50px;height:50px;">
+                    </div>
+                    <h4 class="fw-semibold mb-0 text-body-emphasis">Dall-E 3 응답을 기다리는 중</h4>
+                    <p class="text-body-secondary"><img src="{{ url_for('static', filename='img/loading.gif') }}">
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div id="dallEResponseContainer" class="col" style="display: none;">
+            <div class="row row-cols-1 row-cols-sm-1 g-4">
+                <img id="dallEImage"/>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</html>
