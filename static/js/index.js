@@ -58,12 +58,9 @@ $('#createImage').on('click', function () {
     $('#loadingContainer').show();
 
     let promptString = '';
-    console.log($('#sttContent').val());
     $('#sttContent').val().split('\n').forEach((string) => {
         promptString += (string + ' ');
     });
-
-    console.log(promptString);
 
     const data = {
         prompt: promptString
