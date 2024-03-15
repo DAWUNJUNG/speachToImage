@@ -24,7 +24,7 @@ function sendSpeech() {
         if (speechResult === '여기까지') {
             stopSpeak = true;
         } else {
-            $('#sttContent').text($('#sttContent').text() + speechResult + '\n');
+            $('#sttContent').val($('#sttContent').val() + speechResult + '\n');
             promptList++;
         }
     }
